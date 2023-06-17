@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dost | Your AI Friend</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="static/style.css" />
+    <style>
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 30px;
+            border: 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10rem;
+            transition: all 0.02s;
+            font-weight: bold;
+            color: rgb(37, 37, 37);
+            z-index: 0;
+            box-shadow: 0 0px 7px -5px rgba(0, 0, 0, 0.5);
+          }
+          
+          .button:hover {
+            background: rgb(193, 228, 248);
+            color: rgb(33, 0, 85);
+          }
+          
+          .button:active {
+            transform: scale(0.97);
+          }
+          
+          .hoverEffect {
+            position: absolute;
+            bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+          }
+          
+          .hoverEffect div {
+            background: rgb(222,0,75);
+            background: linear-gradient(90deg, rgba(222,0,75,1) 0%, rgba(191,70,255,1) 49%, rgba(0,212,255,1) 100%);
+            border-radius: 40rem;
+            width: 10rem;
+            height: 10rem;
+            transition: 0.4s;
+            filter: blur(20px);
+            animation: effect infinite 3s linear;
+            opacity: 0.5;
+          }
+          
+          .button:hover .hoverEffect div {
+            width: 8rem;
+            height: 8rem;
+          }
+          
+          @keyframes effect {
+          
+            0% {
+              transform: rotate(0deg);
+            }
+          
+            100% {
+              transform: rotate(360deg);
+            }
+          }
+        </style>
+  </head>
+  <body>
+    <!-- partial:index.partial.html -->
+    <div class="center">
+      <div class="contacts">
+        <i class="fas fa-bars fa-2x"></i>
+        <h2>Know Your AI Friend</h2>
+        <div class="contact">
+          <div class="pic rogers"></div>
+          <div class="badge">1</div>
+          <div class="name">Made With Love</div>
+          <div class="message">For the Hackathon</div>
+        </div>
+        <div class="contact">
+          <div class="pic stark"></div>
+          <div class="name">Team Name : Iron Force</div>
+          <div class="message">Priyanshu Jha : 12219605</div>
+        </div>
+        <div class="contact">
+          <div class="pic banner"></div>
+          <div class="badge">1</div>
+          <div class="name">I can help you with</div>
+          <div class="message">with many Things.....................</div>
+        </div>
+        <div class="contact">
+          <div class="pic thor"></div>
+          <div class="name">Want to Know?</div>
+          <div class="badge">Yes</div>
+          <div class="message">
+            1. Personal Assistant 2. Mental Health Support 3. Educational 4.
+            Entertainment 5. Recreation Virtual Shopping 6. Assistant Travel
+            Guide Health 7. Fitness Coach News
+          </div>
+        </div>
+      </div>
+      <div class="chat">
+        <div class="contact bar">
+          <div class="pic stark"></div>
+          <div class="name">Dost || AI Friend</div>
+          <div class="seen">Always Online For your</div>
+        </div>
+        <div class="messages" id="chat">
+          <div class="time">Today</div>
+          {% if bot %}
+          <div class="message parker">Hey Messsage me !! 👋</div>
+          <div class="message stark">I am Waiting......</div>
+          <div class="message parker">...............</div>
+          <div class="message stark">
+            Do you want to talk with me, Mr. Stark? 🤔
+        </div> 
+        <div class="message parker">{{user1}}</div>
+         {% endif%}
+          {% if bot %}
+          <div class="message stark"> {{bot}}</div>{% endif%}
+          <div class="message stark">
+            <div class="typing typing-1"></div>
+            <div class="typing typing-2"></div>
+            <div class="typing typing-3"></div>
+          </div>
+        </div>
+        <div class="input">
+        <form method="post" action="{% url 'index' %}">
+            {% csrf_token %}
+            <input type="text" name="article" id="article" placeholder="Write...">
+            <button class="button" value="Submit"  type:"submit">Send<div class="hoverEffect">
+                <div>
+                </div>
+                </div></button>
+               
+        </form>
+        
+         </div>
+      </div>
+    </div>
+    <!-- partial -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+      var chat = document.getElementById("chat");
+      chat.scrollTop = chat.scrollHeight - chat.clientHeight;
+    </script>
+  </body>
+</html>
